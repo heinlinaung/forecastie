@@ -1,9 +1,21 @@
+//Global variables
+def project = "sa-android"
+def appName = "Sample App"
+
 pipeline {
   agent any
+  environment {
+      // Fastlane Environment Variables
+      PATH = "$HOME/.fastlane/bin:" +
+              "/usr/local/bin:" +
+              "$PATH"
+      LC_ALL = "en_US.UTF-8"
+      LANG = "en_US.UTF-8"
+  }
   stages {
     stage('Build Image') {
       steps {
-        sh 'docker build -t ${project}'
+        sh 'docker build -t ${project} .'
       }
     }
     stage('Run application test') {
