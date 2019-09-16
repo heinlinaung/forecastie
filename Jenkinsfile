@@ -9,11 +9,12 @@ pipeline {
       LANG = "en_US.UTF-8"
       project = "sa-android"
       appName = "Sample App"
+      teamName = "ANDROID"
   }
   stages {
     stage('Build Image') {
       steps {
-        slackSend(channel: "pipeline", message: "[ANDROID]Job Started! :)", sendAsText: true)
+        slackSend(channel: "pipeline", message: "[${teamName}]${appName} - Job Started! :)", sendAsText: true)
         sh 'docker build -t ${project} .'
       }
     }
@@ -33,17 +34,16 @@ pipeline {
     }
     stage('Slark Noti') {
         steps {
-            slackSend(channel: "pipeline", message: "Success! :)", sendAsText: true)
+            slackSend(channel: "pipeline", message: "[${appType}]${appName} - Success! :)", sendAsText: true)
         }
     }
   }
   post {
-      failure {
-          slackSend(channel: "pipeline",color: "danger", message: "Failed! :)", sendAsText: true)
+      success {
+          slackSend(channel: "pipeline", message: "[${teamName}]${appName} - Success! :)", sendAsText: true)
       }
-      unstable {
-          // slackSend color: "danger", message: "*${env.JOB_NAME}* *${env.BRANCH_NAME}* job is unstable. Unstable means test failure, code violation etc."
-          slackSend(channel: "pipeline",color: "danger", message: "Job is unstable![Unstable means test failure, code violation etc] :)", sendAsText: true)
+      failure {
+          slackSend(channel: "pipeline",color: "danger", message: "[${teamName}]${appName} - Failed! :)", sendAsText: true)
       }
   }
 }
