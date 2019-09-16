@@ -32,11 +32,6 @@ pipeline {
         sh 'rm -rf .env'
       }
     }
-    stage('Slark Noti') {
-        steps {
-            slackSend(channel: "pipeline", message: "[${appType}]${appName} - Success! :)", sendAsText: true)
-        }
-    }
   }
   post {
       success {
