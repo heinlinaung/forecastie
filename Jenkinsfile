@@ -1,7 +1,3 @@
-//Global variables
-def project = "sa-android"
-def appName = "Sample App"
-
 pipeline {
   agent any
   environment {
@@ -11,6 +7,8 @@ pipeline {
               "$PATH"
       LC_ALL = "en_US.UTF-8"
       LANG = "en_US.UTF-8"
+      project = "sa-android"
+      project = "sa-android"
   }
   stages {
     stage('Build Image') {
