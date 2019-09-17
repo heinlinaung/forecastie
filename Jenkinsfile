@@ -17,10 +17,9 @@ pipeline {
             steps {
                 script {
                     try {
+                        sh "JavaHome : ${env.JAVA_HOME}"
                         slackSend(channel: "pipeline", message: "[${teamName}]${appName} - Job Started! :)", sendAsText: true)
-                        sh("env >> .env")
                         sh "fastlane runTests"
-                        sh("rm -rf .env") 
                     } catch(exc) {
                       error('There are failed tests.')
                     }                    
