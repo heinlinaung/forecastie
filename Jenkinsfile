@@ -9,6 +9,7 @@ pipeline {
                 "$PATH"
         LC_ALL = "en_US.UTF-8"
         LANG = "en_US.UTF-8"
+        JAVA_HOME = "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
         appName = "Forecastie"
         teamName = "Android"
     }
