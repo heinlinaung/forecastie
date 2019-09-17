@@ -5,9 +5,6 @@ pipeline {
     environment {
         // Fastlane Environment Variables
         PATH = "$HOME/.fastlane/bin:" +
-                "$HOME/.rvm/gems/ruby-2.5.3/bin:" +
-                "$HOME/.rvm/gems/ruby-2.5.3@global/bin:" +
-                "$HOME/.rvm/rubies/ruby-2.5.3/bin:" +
                 "/usr/local/bin:" +
                 "$PATH"
         LC_ALL = "en_US.UTF-8"
@@ -21,7 +18,9 @@ pipeline {
                 script {
                     try {
                         slackSend(channel: "pipeline", message: "[${teamName}]${appName} - Job Started! :)", sendAsText: true)
-                        sh "fastlane runTests" 
+                        sh("env >> .env")
+                        sh "fastlane runTests"
+                        sh("rm -rf .env") 
                     } catch(exc) {
                       error('There are failed tests.')
                     }                    
