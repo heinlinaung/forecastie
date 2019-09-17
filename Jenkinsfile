@@ -35,7 +35,7 @@ pipeline {
         stage('Upload file to Slack') {
             steps {
               sh "pwd"
-              slackUploadFile channel: "pipeline", filePath: 'app/build/outputs/apk/release/*.apk', initialComment:  'Unsigned APK File'
+              slackUploadFile(channel: "pipeline", filePath: 'app/build/outputs/apk/release/*.apk', initialComment:  'Unsigned APK File', botUser:true, tokenCredentialId:SlackBot)
             }
         }
     }
