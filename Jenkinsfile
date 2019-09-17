@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "JavaHome : ${env.JAVA_HOME}"
+                        sh "echo 'JavaHome :' ${env.JAVA_HOME}"
                         slackSend(channel: "pipeline", message: "[${teamName}]${appName} - Job Started! :)", sendAsText: true)
                         sh "fastlane runTests"
                     } catch(exc) {
