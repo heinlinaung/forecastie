@@ -22,3 +22,6 @@ steps:
   displayName: '[RUN] fastlane beta'
   inputs:
     script: '/usr/local/bin/fastlane beta  --verbose'
+  env:
+      SLACK_URL: '$(slackURL)'
+      SLACK_ACCESS_TOKEN: '$(slackAccessToken)'
