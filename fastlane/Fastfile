@@ -42,7 +42,7 @@ platform :android do
   private_lane :upload_to_slack do |options|
     file_path = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
     file_name = file_path.gsub(/\/.*\//,"")
-    access_token = ENV["ACCESS_TOKEN"] #will be provided via Azure env variables
+    access_token = ENV["SLACK_ACCESS_TOKEN"] #will be provided via Azure env variables
     channel_name = "pipeline"
 
     sh "echo access_token => " + access_token
