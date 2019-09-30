@@ -46,9 +46,11 @@ platform :android do
     channel_name = "pipeline"
 
     sh "echo Uploading " + file_name + " to Slack"
+    sh "echo access_token => " + access_token
+    sh "echo slack_url => " + ENV["SLACK_URL"]
     sh "curl https://slack.com/api/files.upload -F token=\"" + access_token + "\" -F channels=\"" + channel_name + "\" -F title=\"" + file_name + "\" -F filename=\"" + file_name + "\" -F file=@" + file_path
   end
-  
+
   # desc "Deploy a new version to the Google Play"
   # lane :deploy do
   #   gradle(task: "clean assembleRelease")
