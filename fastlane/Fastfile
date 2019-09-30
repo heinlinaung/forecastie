@@ -45,12 +45,12 @@ platform :android do
     access_token = ENV["SLACK_ACCESS_TOKEN"] #will be provided via Azure env variables
     channel_name = "pipeline"
 
-    sh "echo access_token => " + access_token
-    sh "echo slack_url => " + ENV["SLACK_URL"]
-    sh "echo file_name => " + file_name
-    sh "echo file_path => " + file_path
+    # sh "echo access_token => " + access_token
+    # sh "echo slack_url => " + ENV["SLACK_URL"]
+    # sh "echo file_name => " + file_name
+    # sh "echo file_path => " + file_path
     sh "echo Uploading " + file_name + " to Slack"
-    # sh "curl https://slack.com/api/files.upload -F token=\"" + access_token + "\" -F channels=\"" + channel_name + "\" -F title=\"" + file_name + "\" -F filename=\"" + file_name + "\" -F file=@" + file_path
+    sh "curl https://slack.com/api/files.upload -F token=\"" + access_token + "\" -F channels=\"" + channel_name + "\" -F title=\"" + file_name + "\" -F filename=\"" + file_name + "\" -F file=@" + file_path
   end
 
   # desc "Deploy a new version to the Google Play"
